@@ -1,2 +1,0 @@
-# Megalovania
-Szoftverfejlesztés feladat
