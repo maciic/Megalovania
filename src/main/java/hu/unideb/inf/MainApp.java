@@ -27,7 +27,8 @@ public class MainApp extends Application {
         stage.setScene(scene);
         
         ((FXMLMainApp)loader.getController()).setModel(new Model());
-        
+
+        stage.setResizable(false);
         stage.show();
     }
 
