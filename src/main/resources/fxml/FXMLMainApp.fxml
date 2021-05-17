@@ -25,7 +25,7 @@
                                         <Font size="18.0" />
                                     </font>
                                 </Label>
-                                <Button layoutX="88.0" layoutY="173.0" mnemonicParsing="false" text="Kosárba" />
+                                <Button layoutX="88.0" layoutY="173.0" mnemonicParsing="false" onAction="#ac_addToBasket" text="Kosárba" />
                                 <ImageView layoutX="102.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/cart.png" />
@@ -286,7 +286,7 @@
             <children>
                 <AnchorPane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #7d7d7d;">
                     <children>
-                        <Button alignment="CENTER" layoutX="22.0" layoutY="38.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="356.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Kosár" textFill="WHITE">
+                        <Button alignment="CENTER" layoutX="22.0" layoutY="38.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ac_openBasket" prefHeight="51.0" prefWidth="356.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Kosár" textFill="WHITE">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -311,14 +311,14 @@
                      </image>
                   </ImageView>
                         <Button layoutX="296.0" layoutY="125.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Keresés" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="40.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #d30000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="0" textAlignment="CENTER" textFill="WHITE" translateX="-5.0" translateY="3.0">
+                  <Label fx:id="lb_itemsInBasket" alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="40.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #d30000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="0" textAlignment="CENTER" textFill="WHITE" translateX="-5.0" translateY="3.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                     </children>
                 </AnchorPane>
-                <ChoiceBox layoutX="39.0" layoutY="293.0" prefHeight="25.0" prefWidth="322.0" />
+                <ChoiceBox fx:id="cb_orderByCostBox" layoutX="39.0" layoutY="293.0" prefHeight="25.0" prefWidth="322.0" />
                 <Label layoutX="109.0" layoutY="794.0" text="Megalovania">
                     <font>
                         <Font name="System Bold" size="30.0" />
@@ -334,7 +334,7 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <ChoiceBox layoutX="39.0" layoutY="383.0" prefHeight="25.0" prefWidth="322.0" />
+                <ChoiceBox fx:id="cb_orderByNameBox" layoutX="39.0" layoutY="383.0" prefHeight="25.0" prefWidth="322.0" />
                 <Label layoutX="39.0" layoutY="263.0" text="Ár">
                     <font>
                         <Font size="20.0" />
@@ -345,6 +345,11 @@
                         <Font size="20.0" />
                     </font>
                 </Label>
+            <Label layoutX="132.0" layoutY="753.0" text="Kijelentkezés" underline="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>
