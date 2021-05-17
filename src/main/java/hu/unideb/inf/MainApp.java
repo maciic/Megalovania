@@ -28,7 +28,7 @@ public class MainApp extends Application {
         
         ((FXMLMainApp)loader.getController()).setModel(new Model());
 
-        stage.setResizable(false);
+        stage.setResizable(false);          //Nem engedi hogy átméretezzék az ablakot
         stage.show();
     }
 

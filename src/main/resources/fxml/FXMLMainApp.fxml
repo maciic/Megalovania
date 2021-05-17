@@ -311,6 +311,11 @@
                      </image>
                   </ImageView>
                         <Button layoutX="296.0" layoutY="125.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Keresés" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="40.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #d30000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="0" textAlignment="CENTER" textFill="WHITE" translateX="-5.0" translateY="3.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
                 <ChoiceBox layoutX="39.0" layoutY="293.0" prefHeight="25.0" prefWidth="322.0" />
