@@ -15,6 +15,7 @@ public class MainApp extends Application {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLMainApp.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setTitle("Students Register");
+
         stage.setScene(scene);
 
         stage.setResizable(false);          //Nem engedi hogy átméretezzék az ablakot
