@@ -1,6 +1,6 @@
 package hu.unideb.inf.util;
 
-import org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionCreator;
+import com.mysql.cj.util.StringUtils;
 
 import javax.xml.transform.Result;
 import java.sql.*;
@@ -33,16 +33,22 @@ public class Database {
         }
         return db;
     }
-    public ResultSet query(String query, ArrayList data){
-        data.add(1);
-        data.add("asd");
-        data.add(new char[] {'1', '2'});
+    public ResultSet query(String query, ArrayList<String> data){
         PreparedStatement stat;
         try {
-            stat = con.prepareStatement("SELECT * FROM users WHERE id=?;");
-            stat.setInt(1,1);
+            stat = con.prepareStatement(query);
+            for (int i = 0; i < data.size(); i++){
+                if(StringUtils.isStrictlyNumeric(data.get(i))){
+                    stat.setInt(i+1,Integer.parseInt((data.get(i))));
+                } else {
+                    stat.setString(i+1,data.get(i));
+                }
+            }
+
             return stat.executeQuery();
-        } catch (SQLException throwables) {
+        }
+        catch (SQLException throwables) {
+            System.out.println("Database: SQLException");
             throwables.printStackTrace();
         }
         return null;
