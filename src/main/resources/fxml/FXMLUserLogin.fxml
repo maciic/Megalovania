@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #d7d5d5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #d7d5d5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLUserLogin">
    <children>
       <AnchorPane prefHeight="105.0" prefWidth="800.0" style="-fx-background-color: #7d7d7d;">
          <children>
@@ -25,12 +26,15 @@
             <Image url="@../images/szurke.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="73.0" layoutY="441.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="351.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-background-radius: 5em;" text="Belépés" textFill="WHITE">
+      <Button layoutX="73.0" layoutY="441.0" mnemonicParsing="false" onAction="#ac_login" prefHeight="44.0" prefWidth="351.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-background-radius: 5em;" text="Belépés" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <TextField layoutX="73.0" layoutY="261.0" prefHeight="35.0" prefWidth="351.0">
+      <TextField fx:id="txf_userName" layoutX="73.0" layoutY="261.0" prefHeight="35.0" prefWidth="351.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -45,12 +49,14 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="73.0" layoutY="510.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="351.0" style="-fx-background-color: #7d7d7d; -fx-background-radius: 5em; -fx-background-radius: 5em;" text="Regisztráció" textFill="WHITE">
+      <Button layoutX="73.0" layoutY="510.0" mnemonicParsing="false" onAction="#ac_registration" prefHeight="44.0" prefWidth="351.0" style="-fx-background-color: #7d7d7d; -fx-background-radius: 5em; -fx-background-radius: 5em;" text="Regisztráció" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Label layoutX="177.0" layoutY="562.0" text="Vásárlás regisztráció nélkül" />
       <Label layoutX="200.0" layoutY="619.0" text="Megalovania">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -61,7 +67,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <PasswordField layoutX="73.0" layoutY="350.0" prefHeight="35.0" prefWidth="351.0">
+      <PasswordField fx:id="txf_userPassword" layoutX="73.0" layoutY="350.0" prefHeight="35.0" prefWidth="351.0">
          <font>
             <Font size="16.0" />
          </font>
