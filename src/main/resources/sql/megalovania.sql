@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2021 at 02:50 PM
+-- Generation Time: May 18, 2021 at 10:33 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -35,8 +35,16 @@ CREATE TABLE `invoices` (
   `address` varchar(100) NOT NULL,
   `house_num` varchar(5) NOT NULL,
   `door_num` int(5) NOT NULL,
-  `total` int(11) NOT NULL
+  `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `fk_order`, `city_name`, `postcode`, `address`, `house_num`, `door_num`, `total`) VALUES
+(7, 1, 'Mosonmagyaróvár', '9200', 'Törköly utca', '21', 5, NULL),
+(8, 2, 'Pécs', '7600', 'Ady Endre utca', '5', 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -50,6 +58,17 @@ CREATE TABLE `ordered_products` (
   `fk_product` int(11) NOT NULL,
   `fk_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ordered_products`
+--
+
+INSERT INTO `ordered_products` (`id`, `db`, `fk_product`, `fk_order`) VALUES
+(1, 2, 1, 1),
+(2, 1, 3, 1),
+(3, 2, 4, 1),
+(4, 3, 1, 2),
+(5, 4, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -72,7 +91,9 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `price`, `name`, `description`, `in_stock_qty`, `image`) VALUES
 (1, 30000, 'Szék', 'Egy szépen elkészített szék.', 20, ''),
-(2, 300000, 'Play Station 9', 'A Legújabb Next-Gen konzol Dual-Shock XII Star-Sense XL Prémium kontrollerrel.', 1, '');
+(2, 300000, 'Play Station 9', 'A Legújabb Next-Gen konzol Dual-Shock XII Star-Sense XL Prémium kontrollerrel.', 1, ''),
+(3, 20000, 'Razer egér', 'Egy különösen díszes Razer egér.', 6, ''),
+(4, 100000, 'Xbox Two', 'Egy nagyon szép konzol.', 4, '');
 
 -- --------------------------------------------------------
 
@@ -92,7 +113,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (1, 'joska21', 'joskavagyok'),
-(2, 'pistike999', 'pistavagyok');
+(2, 'pistike999', 'pistavagyok'),
+(3, 'username2', 'password23'),
+(4, 'username554', 'password10'),
+(5, 'teszt2', 'teszt2pass');
 
 -- --------------------------------------------------------
 
@@ -109,6 +133,14 @@ CREATE TABLE `user_orders` (
   `house_num` varchar(5) NOT NULL,
   `door_num` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_orders`
+--
+
+INSERT INTO `user_orders` (`id`, `fk_user`, `city_name`, `postcode`, `address`, `house_num`, `door_num`) VALUES
+(1, 1, 'Mosonmagyaróvár', '9200', 'Törköly utca', '21', '5'),
+(2, 3, 'Pécs', '7600', 'Ady Endre utca', '5', '4');
 
 --
 -- Indexes for dumped tables
@@ -152,31 +184,31 @@ ALTER TABLE `user_orders`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ordered_products`
 --
 ALTER TABLE `ordered_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
