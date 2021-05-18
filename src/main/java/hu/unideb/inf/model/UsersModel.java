@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 public class UsersModel {
     private static Database db = Database.getInstance();
+    private UsersModel(){
+
+    }
     public static ArrayList getUser(String username){
         ArrayList tmp = new ArrayList();
         ArrayList result = new ArrayList();
