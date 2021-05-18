@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="RegistrateUserWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLRegistration">
+<AnchorPane fx:id="RegistrateUserWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLRegistration">
    <children>
       <AnchorPane prefHeight="103.0" prefWidth="800.0" style="-fx-background-color: #7d7d7d;">
          <children>
@@ -53,9 +53,9 @@
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <Label fx:id="PasswordError" disable="true" layoutX="308.0" layoutY="560.0">
+      <Label fx:id="PasswordError" alignment="CENTER" disable="true" layoutX="152.0" layoutY="571.0" prefHeight="20.0" prefWidth="498.0">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Label>
    </children>
