@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import hu.unideb.inf.model.UsersModel;
 
 public class FXMLRegistration implements Initializable {
 
@@ -25,7 +26,10 @@ public class FXMLRegistration implements Initializable {
         } else if((txf_RegistratePassword.getText().compareTo(txf_RegistratePassConfirm.getText()))!=0){
             PasswordError.setText("A két jelszó nem egyezik meg!");
         } else{
-            PasswordError.setText("Regisztráció sikreres");
+            if(UsersModel.insertUser(txf_RegistrateUserId.getText(),txf_RegistratePassword.getText())==true)
+                PasswordError.setText("Regisztráció sikeres");
+            else
+                PasswordError.setText("A felhasználónév már foglalt");
         }
     }
 
