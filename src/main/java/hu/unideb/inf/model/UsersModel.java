@@ -1,5 +1,42 @@
 package hu.unideb.inf.model;
 
-public class UsersModel {
+import hu.unideb.inf.util.Database;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class UsersModel {
+    private static Database db = Database.getInstance();
+    public static ArrayList getUser(String username){
+        ArrayList tmp = new ArrayList();
+        ArrayList result = new ArrayList();
+        tmp.add(username);
+        ResultSet rs = db.query("SELECT * FROM users WHERE username = ?", tmp);
+        try {
+            if (rs.next()) {
+                result.add(rs.getString(2));
+                result.add(rs.getString(3));
+            } else {
+                //nincs ilyen felhasználó
+                return null;
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+    public static Boolean insertUser(String username, String password){
+        if(UsersModel.getUser(username) == null) {
+            ArrayList tmp = new ArrayList();
+            tmp.add(username);
+            tmp.add(password);
+            if (db.update("INSERT INTO users (username, password) VALUES (?,?)", tmp) != 1) {
+                //belső sql hiba
+                return false;
+            }
+            return true;
+        }
+        //már létező felhasználó
+        return false;
+    }
 }
