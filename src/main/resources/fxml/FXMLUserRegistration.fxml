@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="RegistrateUserWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLRegistration">
    <children>
       <AnchorPane prefHeight="103.0" prefWidth="800.0" style="-fx-background-color: #7d7d7d;">
          <children>
@@ -19,7 +18,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TextField layoutX="225.0" layoutY="217.0" prefHeight="35.0" prefWidth="351.0">
+      <TextField fx:id="txf_RegistrateUserId" layoutX="225.0" layoutY="217.0" prefHeight="35.0" prefWidth="351.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -34,7 +33,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="225.0" layoutY="486.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="351.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-background-radius: 5em;" text="Regisztráció" textFill="WHITE">
+      <Button fx:id="RegistrateButton" layoutX="225.0" layoutY="486.0" mnemonicParsing="false" onAction="#ac_RegistrateUserFunct" prefHeight="44.0" prefWidth="351.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-background-radius: 5em;" text="Regisztráció" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -44,15 +43,20 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <PasswordField layoutX="225.0" layoutY="310.0" prefHeight="35.0" prefWidth="351.0">
+      <PasswordField fx:id="txf_RegistratePassword" layoutX="225.0" layoutY="310.0" prefHeight="35.0" prefWidth="351.0">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <PasswordField layoutX="225.0" layoutY="403.0" prefHeight="35.0" prefWidth="351.0">
+      <PasswordField fx:id="txf_RegistratePassConfirm" layoutX="225.0" layoutY="403.0" prefHeight="35.0" prefWidth="351.0">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
+      <Label fx:id="PasswordError" disable="true" layoutX="308.0" layoutY="560.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
