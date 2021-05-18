@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLUserOrder">
   <tabs>
-    <Tab text="Kosár tartalma">
+    <Tab fx:id="tab_basket" closable="false" text="Kosár tartalma">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -77,7 +77,7 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
-                        <Button layoutX="918.0" layoutY="491.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Tovább" textFill="WHITE">
+                        <Button layoutX="918.0" layoutY="491.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#ac_goTransportTab" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Tovább" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
@@ -107,13 +107,13 @@
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Szállítás, számlázás">
+    <Tab fx:id="tab_transport" closable="false" text="Szállítás, számlázás">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <AnchorPane prefHeight="77.0" prefWidth="1200.0" style="-fx-background-color: #7d7d7d;">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="399.0" layoutY="12.0" prefHeight="53.0" prefWidth="402.0" text="Szállítás, számlázás" textFill="WHITE">
+                        <Label fx:id="lb_titleError" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="11.0" prefHeight="54.0" prefWidth="743.0" text="Szállítás, számlázás" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
@@ -152,24 +152,24 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="41.0" layoutY="80.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="41.0" layoutY="150.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="40.0" layoutY="218.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="40.0" layoutY="289.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="40.0" layoutY="363.0" prefHeight="25.0" prefWidth="359.0" />
-                        <CheckBox layoutX="40.0" layoutY="421.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="359.0" text="A számlázási cím megeggyezik a szállítási címmel.">
+                        <TextField fx:id="txf_billName" layoutX="41.0" layoutY="80.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_billCity" layoutX="41.0" layoutY="150.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_billPostalCode" layoutX="40.0" layoutY="218.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_billAddress" layoutX="40.0" layoutY="289.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_billHouseNumber" layoutX="40.0" layoutY="363.0" prefHeight="25.0" prefWidth="359.0" />
+                        <CheckBox fx:id="cb_billAndTransportAddressEQ" layoutX="40.0" layoutY="421.0" mnemonicParsing="false" onAction="#ac_billAndTransportAddressEQ" prefHeight="21.0" prefWidth="359.0" text="A számlázási cím megeggyezik a szállítási címmel.">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </CheckBox>
                      </children>
                   </AnchorPane>
-                  <Label alignment="CENTER" layoutX="242.0" layoutY="91.0" prefHeight="25.0" prefWidth="717.0" style="-fx-font-weight: bold;" text="Tájékoztatjuk hogy áruházunkban jelenleg csak készpénzes fizetés áll módunkban elfogadni!" textFill="#c30505">
+                  <Label alignment="CENTER" layoutX="241.0" layoutY="94.0" prefHeight="25.0" prefWidth="717.0" style="-fx-font-weight: bold;" text="Tájékoztatjuk hogy áruházunkban jelenleg csak készpénzes fizetés áll módunkban elfogadni!" textFill="#c30505">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutX="659.0" layoutY="135.0" prefHeight="399.0" prefWidth="441.0">
+                  <AnchorPane fx:id="ap_transport" layoutX="659.0" layoutY="135.0" prefHeight="399.0" prefWidth="441.0">
                      <children>
                         <Label layoutX="40.0" layoutY="59.0" prefHeight="21.0" prefWidth="35.0" text="Név">
                            <font>
@@ -201,15 +201,15 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="41.0" layoutY="80.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="41.0" layoutY="150.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="40.0" layoutY="218.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="40.0" layoutY="289.0" prefHeight="25.0" prefWidth="359.0" />
-                        <TextField layoutX="40.0" layoutY="363.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_transportName" layoutX="41.0" layoutY="80.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_transportCity" layoutX="41.0" layoutY="150.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_transportPostalCode" layoutX="40.0" layoutY="218.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_transportAddress" layoutX="40.0" layoutY="289.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField fx:id="txf_transportHouseNumber" layoutX="40.0" layoutY="363.0" prefHeight="25.0" prefWidth="359.0" />
                      </children>
                   </AnchorPane>
                   <Separator layoutX="597.0" layoutY="140.0" orientation="VERTICAL" prefHeight="457.0" prefWidth="6.0" style="-fx-background-color: #bab5b3;" />
-                  <Button layoutX="751.0" layoutY="567.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Tovább" textFill="WHITE">
+                  <Button layoutX="751.0" layoutY="567.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#ac_goOrderSummaryTab" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Tovább" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -227,7 +227,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Rendelés összegzése">
+      <Tab fx:id="tab_orderSummary" closable="false" text="Rendelés összegzése">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -240,6 +240,14 @@
                         </Label>
                      </children>
                   </AnchorPane>
+                  <Button layoutX="472.0" layoutY="571.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#ac_finalizeOrder" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Rendelés Leadása" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <AnchorPane layoutX="454.0" layoutY="96.0" prefHeight="164.0" prefWidth="276.0">
                      <children>
                         <Label alignment="CENTER_RIGHT" layoutY="25.0" prefHeight="25.0" prefWidth="140.0" text="Név:">
@@ -257,17 +265,17 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="99.0" prefHeight="25.0" prefWidth="140.0" text="Medve lak utca">
+                        <Label fx:id="lb_billAddress" layoutX="153.0" layoutY="99.0" prefHeight="25.0" prefWidth="140.0" text="Medve lak utca">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="25.0" prefHeight="25.0" prefWidth="140.0" text="Nyomo Réka">
+                        <Label fx:id="lb_billName" layoutX="153.0" layoutY="25.0" prefHeight="25.0" prefWidth="140.0" text="Nyomo Réka">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="74.0" prefHeight="25.0" prefWidth="140.0" text="1234">
+                        <Label fx:id="lb_billPostalCode" layoutX="153.0" layoutY="74.0" prefHeight="25.0" prefWidth="140.0" text="1234">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -282,12 +290,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="124.0" prefHeight="25.0" prefWidth="140.0" text="42">
+                        <Label fx:id="lb_billHouseNumber" layoutX="153.0" layoutY="124.0" prefHeight="25.0" prefWidth="140.0" text="42">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="49.0" prefHeight="25.0" prefWidth="140.0" text="Rosod">
+                        <Label fx:id="lb_billCity" layoutX="153.0" layoutY="49.0" prefHeight="25.0" prefWidth="140.0" text="Rosod">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -316,17 +324,17 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="99.0" prefHeight="25.0" prefWidth="140.0" text="Medve lak utca">
+                        <Label fx:id="lb_transportAddress" layoutX="153.0" layoutY="99.0" prefHeight="25.0" prefWidth="140.0" text="Medve lak utca">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="25.0" prefHeight="25.0" prefWidth="140.0" text="Nyomo Réka">
+                        <Label fx:id="lb_transportName" layoutX="153.0" layoutY="25.0" prefHeight="25.0" prefWidth="140.0" text="Nyomo Réka">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="74.0" prefHeight="25.0" prefWidth="140.0" text="1234">
+                        <Label fx:id="lb_transportPostalCode" layoutX="153.0" layoutY="74.0" prefHeight="25.0" prefWidth="140.0" text="1234">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -341,12 +349,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="124.0" prefHeight="25.0" prefWidth="140.0" text="42">
+                        <Label fx:id="lb_transportHouseNumber" layoutX="153.0" layoutY="124.0" prefHeight="25.0" prefWidth="140.0" text="42">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="153.0" layoutY="49.0" prefHeight="25.0" prefWidth="140.0" text="Rosod">
+                        <Label fx:id="lb_transportCity" layoutX="153.0" layoutY="49.0" prefHeight="25.0" prefWidth="140.0" text="Rosod">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -358,14 +366,6 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button layoutX="472.0" layoutY="571.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Rendelés Leadása" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Label layoutX="495.0" layoutY="426.0" text="Összesen fizetendő:" underline="true">
                      <font>
                         <Font size="24.0" />
