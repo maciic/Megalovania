@@ -53,4 +53,24 @@ public class Database {
         }
         return null;
     }
+    public int update(String query, ArrayList<String> data){
+        PreparedStatement stat;
+        try {
+            stat = con.prepareStatement(query);
+            for (int i = 0; i < data.size(); i++){
+                if(StringUtils.isStrictlyNumeric(data.get(i))){
+                    stat.setInt(i+1,Integer.parseInt((data.get(i))));
+                } else {
+                    stat.setString(i+1,data.get(i));
+                }
+            }
+
+            return stat.executeUpdate();
+        }
+        catch (SQLException throwables) {
+            System.out.println("Database: SQLException");
+            throwables.printStackTrace();
+        }
+        return 999;
+    }
 }
