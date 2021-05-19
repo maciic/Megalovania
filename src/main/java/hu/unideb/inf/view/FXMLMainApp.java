@@ -5,12 +5,10 @@
  */
 package hu.unideb.inf.view;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.ConsoleHandler;
 
+import java.net.URL;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,11 +22,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import hu.unideb.inf.util.Cart;
 
 public class FXMLMainApp implements Initializable {
 
@@ -42,8 +39,17 @@ public class FXMLMainApp implements Initializable {
     @FXML private AnchorPane prod_list;
 
     @FXML
-    private void ac_addToBasket() {
-        lb_itemsInBasket.setText(String.valueOf(Integer.parseInt(lb_itemsInBasket.getText())+1));
+    private void ac_addToBasket(String gombId) {
+        HashMap<String,String> tmp = new HashMap<>();
+        System.out.println(gombId);
+
+
+        Cart.AddToCart(tmp);
+        if(Cart.cartContent.size()!=0)
+            lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
+        else
+            lb_itemsInBasket.setText("0");
+
 
     }
 
@@ -100,7 +106,7 @@ public class FXMLMainApp implements Initializable {
 
 
         String name;
-        int id;
+        int buttonID =1;
         int price = 250;
 
         for(int i = 0; i < 40; i++)
@@ -112,32 +118,35 @@ public class FXMLMainApp implements Initializable {
 
             if(x < 5)
             {
-                prod_list.getChildren().add(createPane(x*220, y * 230, "pofone", 3500, price));
+                prod_list.getChildren().add(createPane(x*220, y * 230, "pofone", 3500, price,String.valueOf(buttonID++)));
                 x++;
             }
             else
             {
                 y++;
                 x = 0;
-                prod_list.getChildren().add(createPane(x*220, y * 230, "pofone", 3500, price));
+                prod_list.getChildren().add(createPane(x*220, y * 230, "pofone", 3500, price,String.valueOf(buttonID++)));
             }
 
         }
     }
 
-    private AnchorPane createPane(int xpadd, int ypadd, String name, int id, int cost){
+    private AnchorPane createPane(int xpadd, int ypadd, String name, int id, int cost,String buttonID){
 
         AnchorPane ap_item = new AnchorPane();
         Label lb_name = new Label(name);
         Button bt_buyitem = new Button("Vásárlás");
         Label lb_cost = new Label(String.valueOf(cost) + "ft");
 
+
+        bt_buyitem.setId(buttonID);
+        String tovabb = bt_buyitem.getId();
         bt_buyitem.setLayoutX(70);
         bt_buyitem.setLayoutY(140);
         bt_buyitem.setStyle("-fx-background-color: #E1DFD; -fx-border-color: #000; -fx-background-radius: .5em; -fx-border-radius: .5em;");
         bt_buyitem.setCursor(Cursor.HAND);
         bt_buyitem.setAlignment(Pos.CENTER);
-        bt_buyitem.setOnAction(actionEvent -> ac_addToBasket());
+        bt_buyitem.setOnAction(actionEvent -> ac_addToBasket(tovabb));
 
         lb_name.setFont(javafx.scene.text.Font.font ("System", 30));
         lb_name.setLayoutX(55);
@@ -158,6 +167,7 @@ public class FXMLMainApp implements Initializable {
         ap_item.getChildren().add(lb_name);
         ap_item.getChildren().add(bt_buyitem);
         ap_item.getChildren().add(lb_cost);
+
 
         return ap_item;
     }

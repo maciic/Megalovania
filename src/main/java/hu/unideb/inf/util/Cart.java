@@ -8,9 +8,9 @@ import java.util.HashMap;
 
 public class Cart {
 
-    ArrayList<HashMap<String,String>> cartContent;
+    public static ArrayList<HashMap<String,String>> cartContent = new ArrayList<>();
 
-    private ArrayList<HashMap<String,String>> AddToCart(HashMap<String,String> bele){
+    public static ArrayList<HashMap<String,String>> AddToCart(HashMap<String,String> bele){
         HashMap<String,String> tmp = new HashMap<>();
         cartContent = new ArrayList<>();
         cartContent.add(bele);
@@ -18,7 +18,7 @@ public class Cart {
 
     }
 
-    private void RemoveFromCart(HashMap<String,String> kivesz){
+    public static void RemoveFromCart(HashMap<String,String> kivesz){
         HashMap<String,String> tmp = new HashMap<>();
         if(cartContent.contains(kivesz))
         cartContent.remove(kivesz);
