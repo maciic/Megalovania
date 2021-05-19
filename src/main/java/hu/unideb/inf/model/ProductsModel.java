@@ -1,16 +1,70 @@
 package hu.unideb.inf.model;
 
+import hu.unideb.inf.util.Database;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProductsModel {
-    Delete delete;
-    Update update;
-    Select select;
-    private class Delete{
+    public enum OrderByName {
+        None,
+        Ascending,
+        Descending
+    }
+    public enum OrderByPrice {
+        None,
+        Ascending,
+        Descending
+    }
+    private static Database db = Database.getInstance();
+    private ProductsModel(){
 
     }
-    private class Update{
-
-    }
-    private class Select{
-
+    public static ArrayList<HashMap<String,String>> getProducts(OrderByName name, OrderByPrice price){
+        ArrayList<HashMap<String,String>> result = new ArrayList<>();
+        String query = "SELECT * FROM products";
+        switch(name) {
+            case Ascending:
+                query += " ORDER BY name ASC";
+                break;
+            case Descending:
+                query += " ORDER BY name DESC";
+                break;
+        }
+        switch(price){
+            case Ascending:
+                if(name != OrderByName.None)
+                    query += ", price ASC";
+                else
+                    query += " ORDER BY price ASC";
+                break;
+            case Descending:
+                if(name != OrderByName.None)
+                    query += ", price DESC";
+                else
+                    query += " ORDER BY price DESC";
+                break;
+        }
+        ResultSet rs = db.query(query);
+        try {
+            while (rs.next()) {
+                HashMap<String,String> tmp = new HashMap<>();
+                tmp.put("id",rs.getString("id"));
+                //System.out.println(rs.getString("id"));
+                tmp.put("price",rs.getString("price"));
+                //System.out.println(rs.getString("price"));
+                tmp.put("name",rs.getString("name"));
+                //System.out.println(rs.getString("name"));
+                tmp.put("description",rs.getString("description"));
+                //System.out.println(rs.getString("description"));
+                tmp.put("in_stock_qty",rs.getString("in_stock_qty"));
+                //System.out.println(rs.getString("in_stock_qty"));
+                result.add(tmp);
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }
