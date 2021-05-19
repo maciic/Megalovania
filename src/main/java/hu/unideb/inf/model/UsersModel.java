@@ -10,9 +10,9 @@ public class UsersModel {
     private UsersModel(){
 
     }
-    public static ArrayList getUser(String username){
-        ArrayList tmp = new ArrayList();
-        ArrayList result = new ArrayList();
+    public static ArrayList<String> getUser(String username){
+        ArrayList<String> tmp = new ArrayList();
+        ArrayList<String> result = new ArrayList();
         tmp.add(username);
         ResultSet rs = db.query("SELECT * FROM users WHERE username = ?", tmp);
         try {
