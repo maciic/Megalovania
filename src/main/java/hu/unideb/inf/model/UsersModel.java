@@ -17,6 +17,7 @@ public class UsersModel {
         ResultSet rs = db.query("SELECT * FROM users WHERE username = ?", tmp);
         try {
             if (rs.next()) {
+                result.add(rs.getString(1));
                 result.add(rs.getString(2));
                 result.add(rs.getString(3));
             } else {
