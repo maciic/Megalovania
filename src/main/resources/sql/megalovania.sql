@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2021 at 09:24 PM
+-- Generation Time: May 19, 2021 at 09:27 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -34,7 +34,7 @@ CREATE TABLE `invoices` (
   `postcode` varchar(4) NOT NULL,
   `address` varchar(100) NOT NULL,
   `house_door_num` varchar(5) NOT NULL,
-  `name` int(5) NOT NULL,
+  `name` varchar(30) NOT NULL,
   `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,10 +43,10 @@ CREATE TABLE `invoices` (
 --
 
 INSERT INTO `invoices` (`id`, `fk_order`, `city_name`, `postcode`, `address`, `house_door_num`, `name`, `total`) VALUES
-(7, 1, 'Mosonmagyaróvár', '9200', 'Törköly utca', '21', 5, NULL),
-(8, 2, 'Pécs', '7600', 'Ady Endre utca', '5', 4, NULL),
-(14, 17, 'Gyöngyös', '3200', 'asdasdasd', '20', 30, 15000),
-(15, 18, 'dfggd', '3000', 'gfgd', '20', 20, 20);
+(7, 1, 'Mosonmagyaróvár', '9200', 'Törköly utca', '21', '5', NULL),
+(8, 2, 'Pécs', '7600', 'Ady Endre utca', '5', '4', NULL),
+(14, 17, 'Gyöngyös', '3200', 'asdasdasd', '20', '30', 15000),
+(15, 18, 'dfggd', '3000', 'gfgd', '20', '20', 20);
 
 -- --------------------------------------------------------
 
