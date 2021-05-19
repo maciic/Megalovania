@@ -53,6 +53,18 @@ public class Database {
         }
         return null;
     }
+    public ResultSet query(String query){
+        PreparedStatement stat;
+        try {
+            stat = con.prepareStatement(query);
+            return stat.executeQuery();
+        }
+        catch (SQLException throwables) {
+            System.out.println("Database: SQLException");
+            throwables.printStackTrace();
+        }
+        return null;
+    }
     public int update(String query, ArrayList<String> data){
         PreparedStatement stat;
         try {
