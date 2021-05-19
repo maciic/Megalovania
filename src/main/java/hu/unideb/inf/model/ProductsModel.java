@@ -3,6 +3,7 @@ package hu.unideb.inf.model;
 import hu.unideb.inf.util.Database;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,6 +21,25 @@ public class ProductsModel {
     private static Database db = Database.getInstance();
     private ProductsModel(){
 
+    }
+    public static HashMap<String,String> getProduct(String id){
+        ArrayList tmp = new ArrayList();
+        HashMap<String,String> result = new HashMap<>();
+        tmp.add(id);
+        String query = "SELECT * FROM products WHERE id = ?";
+        ResultSet rs = db.query(query, tmp);
+        try {
+            if(rs.next()){
+                result.put("id",rs.getString("id"));
+                result.put("price",rs.getString("price"));
+                result.put("name",rs.getString("name"));
+                result.put("description",rs.getString("description"));
+                result.put("in_stock_qty",rs.getString("in_stock_qty"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return result;
     }
     public static ArrayList<HashMap<String,String>> getProducts(OrderByName name, OrderByPrice price){
         ArrayList<HashMap<String,String>> result = new ArrayList<>();
