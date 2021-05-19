@@ -33,48 +33,7 @@
                      <children>
                         <ScrollPane prefHeight="595.0" prefWidth="899.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="872.0">
-                                 <children>
-                                    <AnchorPane layoutX="39.0" layoutY="34.0" prefHeight="106.0" prefWidth="794.0" style="-fx-background-color: #ffeab3; -fx-background-radius: 3em; -fx-border-radius: 3em;">
-                                       <children>
-                                          <Label layoutX="154.0" layoutY="40.0" text="Valami item">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <ImageView fitHeight="87.0" fitWidth="74.0" layoutX="43.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/cart.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutX="656.0" layoutY="40.0" text="12.999 Ft-">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane layoutX="39.0" layoutY="148.0" prefHeight="106.0" prefWidth="794.0" style="-fx-background-color: #ffeab3; -fx-background-radius: 3em; -fx-border-radius: 3em;">
-                                       <children>
-                                          <Label layoutX="154.0" layoutY="40.0" text="Valami item">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <ImageView fitHeight="87.0" fitWidth="74.0" layoutX="43.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/cart.png" />
-                                             </image>
-                                          </ImageView>
-                                          <Label layoutX="648.0" layoutY="40.0" prefHeight="27.0" prefWidth="88.0" text="30.999 Ft-">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
+                            <AnchorPane fx:id="ap_contentINCart" minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="872.0" />
                           </content>
                         </ScrollPane>
                         <Button layoutX="918.0" layoutY="491.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#ac_goTransportTab" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Tovább" textFill="WHITE">

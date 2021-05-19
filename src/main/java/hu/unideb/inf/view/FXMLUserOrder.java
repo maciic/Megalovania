@@ -2,22 +2,23 @@ package hu.unideb.inf.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLUserOrder implements Initializable {
 
-    @FXML private Tab tab_basket;
     @FXML private Tab tab_transport;
     @FXML private Tab tab_orderSummary;
 
     @FXML private AnchorPane ap_transport;
+    @FXML private AnchorPane ap_contentINCart;
     @FXML private CheckBox cb_billAndTransportAddressEQ;
 
     @FXML private TextField txf_billName;
@@ -127,9 +128,58 @@ public class FXMLUserOrder implements Initializable {
         }
     }
 
+    private AnchorPane createPane(int count, String name, int cost){
+
+        AnchorPane ap_item = new AnchorPane();
+        Label lb_name = new Label(name);
+        Label lb_cost = new Label(String.valueOf(cost));
+        Button bt_deleteItem = new Button("X");
+
+        bt_deleteItem.setLayoutX(750);
+        bt_deleteItem.setLayoutY(35);
+        bt_deleteItem.setStyle("-fx-background-color: none; -fx-border-color: #000; -fx-background-radius: 5em; -fx-border-radius: 5em;");
+        bt_deleteItem.setCursor(Cursor.HAND);
+        bt_deleteItem.setAlignment(Pos.CENTER);
+        bt_deleteItem.setOnAction(actionEvent -> ac_deleteItem(bt_deleteItem.getParent()));
+
+        lb_name.setFont(Font.font ("System", 30));
+        lb_name.setLayoutX(160);
+        lb_name.setLayoutY(25);
+        lb_name.setAlignment(Pos.CENTER);
+
+        lb_cost.setFont(Font.font ("System", 30));
+        lb_cost.setLayoutX(650);
+        lb_cost.setLayoutY(25);
+        lb_name.setAlignment(Pos.CENTER);
+
+        ap_item.setStyle("-fx-background-color: #ffeab3; -fx-background-radius: 3em; -fx-border-radius: 3em;");
+        ap_item.setPrefHeight(100);
+        ap_item.setPrefWidth(800);
+        ap_item.setLayoutX(40);
+        ap_item.setLayoutY(count + 20);
+
+        ap_item.getChildren().add(lb_name);
+        ap_item.getChildren().add(lb_cost);
+        ap_item.getChildren().add(bt_deleteItem);
+
+        return ap_item;
+    }
+
+    @FXML
+    private void ac_deleteItem(Parent ap_currentAP){
+        ap_currentAP.setDisable(true);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tab_transport.setDisable(true);
         tab_orderSummary.setDisable(true);
+
+        for(int i = 0; i < 10; i++){
+            if(i*120+20*i > ap_contentINCart.getPrefHeight()){
+                ap_contentINCart.setPrefHeight((i)*120+20*(i));
+            }
+            ap_contentINCart.getChildren().add(createPane(i*120, "pofone", 3500));
+        }
     }
 }
