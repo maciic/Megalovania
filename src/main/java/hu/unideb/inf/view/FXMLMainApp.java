@@ -43,9 +43,8 @@ public class FXMLMainApp implements Initializable {
 
     @FXML
     private void ac_addToBasket() {
-        int szam = Integer.parseInt(lb_itemsInBasket.getText());
-        szam++;
-        lb_itemsInBasket.setText(String.valueOf(szam));
+        lb_itemsInBasket.setText(String.valueOf(Integer.parseInt(lb_itemsInBasket.getText())+1));
+
     }
 
     @FXML
