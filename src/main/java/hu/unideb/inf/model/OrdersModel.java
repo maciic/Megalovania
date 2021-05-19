@@ -125,8 +125,8 @@ public class OrdersModel {
         tmp.add(userId);
         //SELECT * FROM user_orders INNER JOIN ordered_products ON user_orders.id = ordered_products.fk_order INNER JOIN invoices ON invoices.fk_order = user_orders.id INNER JOIN users ON user_orders.fk_user = users.id INNER JOIN products ON products.id = ordered_products.fk_product WHERE users.username = "tesztjános";
         ResultSet rs = db.query(
-                "SELECT user_orders.id, user_orders.city_name, user_orders.postcode, user_orders.address, user_orders.house_num, user_orders.door_num, " +
-                "invoices.city_name, invoices.postcode, invoices.address, invoices.house_num, invoices.door_num, invoices.total, " +
+                "SELECT user_orders.id, user_orders.city_name, user_orders.postcode, user_orders.address, user_orders.house_door_num, user_orders.name, " +
+                "invoices.city_name, invoices.postcode, invoices.address, invoices.house_door_num, invoices.name, invoices.total, " +
                 "products.price, products.name, products.description, products.in_stock_qty FROM user_orders " +
                 "INNER JOIN ordered_products ON user_orders.id = ordered_products.fk_order " +
                 "INNER JOIN invoices ON invoices.fk_order = user_orders.id " +
@@ -143,14 +143,14 @@ public class OrdersModel {
                 rstmp.put("order_city_name",rs.getString(2));
                 rstmp.put("order_postcode",rs.getString(3));
                 rstmp.put("order_address",rs.getString(4));
-                rstmp.put("order_house_num",rs.getString(5));
-                rstmp.put("order_door_num",rs.getString(6));
+                rstmp.put("order_house_door_num",rs.getString(5));
+                rstmp.put("order_name",rs.getString(6));
 
                 rstmp.put("invoices_city_name",rs.getString(7));
                 rstmp.put("invoices_postcode",rs.getString(8));
                 rstmp.put("invoices_address",rs.getString(9));
-                rstmp.put("invoices_house_num",rs.getString(10));
-                rstmp.put("invoices_door_num",rs.getString(11));
+                rstmp.put("invoices_house_door_num",rs.getString(10));
+                rstmp.put("invoices_name",rs.getString(11));
                 rstmp.put("invoices_total",rs.getString(12));
 
                 rstmp.put("product_price",rs.getString(13));
