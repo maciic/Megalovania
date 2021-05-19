@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.util.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,6 +43,7 @@ public class FXMLUserLogin implements Initializable {
                     catch (Exception e) {
                         e.printStackTrace();
                     }
+                    Session.login(txf_userName.getText());
             }else
                 label_WrongPassword.setText("Helytelen jelszó!");
                 else label_WrongPassword.setText("Nincs ilyen felhasználó!");
