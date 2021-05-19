@@ -89,6 +89,19 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="bt_loginName" alignment="CENTER" layoutX="104.0" layoutY="718.0" mnemonicParsing="false" onAction="#ac_listUserOrders" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: none;" text="Button" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="118.0" layoutY="691.0" text="Bejelentkezve mint:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>

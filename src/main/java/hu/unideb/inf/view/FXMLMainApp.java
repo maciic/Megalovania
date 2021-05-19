@@ -38,6 +38,7 @@ public class FXMLMainApp implements Initializable {
     @FXML private ChoiceBox cb_orderByCostBox;
     @FXML private ChoiceBox cb_orderByNameBox;
     @FXML private TextField txf_searchField;
+    @FXML private Button bt_loginName;
 
     @FXML private AnchorPane prod_list;
 
@@ -78,6 +79,20 @@ public class FXMLMainApp implements Initializable {
     }
 
     @FXML
+    private void ac_listUserOrders(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLlistUserOrders.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void ac_search(){
         String search;
         if(txf_searchField.getText() != ""){
@@ -93,6 +108,8 @@ public class FXMLMainApp implements Initializable {
 
         cb_orderByNameBox.setValue("Növekvő");
         cb_orderByNameBox.setItems(cb_orderByCostList);
+
+        bt_loginName.setText("Felhasználó");
 
         int counter = 0;
         int x = 0;
