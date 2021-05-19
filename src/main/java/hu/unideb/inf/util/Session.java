@@ -10,6 +10,13 @@ public class Session {
     private Session() {
 
     }
+    public static String getUserId() {
+        return userId;
+    }
+
+    public static String getUserName() {
+        return userName;
+    }
     public static void login(String username){
         ArrayList<String> tmp = UsersModel.getUser(username);
         userId = tmp.get(0);
