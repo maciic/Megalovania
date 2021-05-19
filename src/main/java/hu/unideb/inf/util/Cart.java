@@ -24,4 +24,7 @@ public class Cart {
         cartContent.remove(kivesz);
 
     }
+     private int cartSize(ArrayList<HashMap<String,String>> cart){
+        return cart.size();
+     }
 }
