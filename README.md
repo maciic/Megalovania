@@ -1,4 +1,4 @@
 # Megalovania
 Szoftverfejlesztés feladat
 
-A csapat által elfogadott végleges fejlesztések.
+A fejlesztői branch. Az ötletek, félmegoldások stb jöhetnek ide.
