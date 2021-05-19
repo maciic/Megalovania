@@ -55,7 +55,7 @@
                   </Label>
                     </children>
                 </AnchorPane>
-                <ChoiceBox fx:id="cb_orderByCostBox" layoutX="39.0" layoutY="293.0" onContextMenuRequested="#orderRefresh" onMouseClicked="#orderRefresh" onMouseDragged="#orderRefresh" onMouseEntered="#orderRefresh" onMouseExited="#orderRefresh" onMouseMoved="#orderRefresh" prefHeight="25.0" prefWidth="322.0" />
+                <ChoiceBox fx:id="cb_orderByCostBox" layoutX="39.0" layoutY="293.0" onMouseClicked="#orderRefresh" onMouseExited="#orderRefresh" onMouseMoved="#orderRefresh" prefHeight="25.0" prefWidth="322.0" />
                 <Label layoutX="109.0" layoutY="794.0" text="Megalovania">
                     <font>
                         <Font name="System Bold" size="30.0" />

@@ -42,7 +42,6 @@ public class FXMLMainApp implements Initializable {
 
     @FXML
     private void ac_addToBasket(String gombId) {
-        System.out.println(gombId);
         HashMap<String,String> tmp = new HashMap<>(ProductsModel.getProduct(gombId));
         Cart.AddToCart(tmp);
 
@@ -56,9 +55,6 @@ public class FXMLMainApp implements Initializable {
 
     @FXML
     private void ac_openBasket(){
-        for (var asd: ProductsModel.getProducts(ProductsModel.OrderByName.Descending,ProductsModel.OrderByPrice.None)) {
-            System.out.println(asd);
-        }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLUserOrder.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
