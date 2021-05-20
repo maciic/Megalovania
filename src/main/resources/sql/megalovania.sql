@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 19, 2021 at 09:27 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2021. Máj 20. 12:39
+-- Kiszolgáló verziója: 10.4.18-MariaDB
+-- PHP verzió: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `megalovania`
+-- Adatbázis: `megalovania`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invoices`
+-- Tábla szerkezet ehhez a táblához `invoices`
 --
 
 CREATE TABLE `invoices` (
@@ -39,7 +39,7 @@ CREATE TABLE `invoices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `invoices`
+-- A tábla adatainak kiíratása `invoices`
 --
 
 INSERT INTO `invoices` (`id`, `fk_order`, `city_name`, `postcode`, `address`, `house_door_num`, `name`, `total`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `invoices` (`id`, `fk_order`, `city_name`, `postcode`, `address`, `h
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordered_products`
+-- Tábla szerkezet ehhez a táblához `ordered_products`
 --
 
 CREATE TABLE `ordered_products` (
@@ -62,7 +62,7 @@ CREATE TABLE `ordered_products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ordered_products`
+-- A tábla adatainak kiíratása `ordered_products`
 --
 
 INSERT INTO `ordered_products` (`id`, `db`, `fk_product`, `fk_order`) VALUES
@@ -79,7 +79,7 @@ INSERT INTO `ordered_products` (`id`, `db`, `fk_product`, `fk_order`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Tábla szerkezet ehhez a táblához `products`
 --
 
 CREATE TABLE `products` (
@@ -92,19 +92,33 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `products`
+-- A tábla adatainak kiíratása `products`
 --
 
 INSERT INTO `products` (`id`, `price`, `name`, `description`, `in_stock_qty`, `image`) VALUES
 (1, 30000, 'Szék', 'Egy szépen elkészített szék.', 20, ''),
 (2, 300000, 'Play Station 9', 'A Legújabb Next-Gen konzol Dual-Shock XII Star-Sense XL Prémium kontrollerrel.', 1, ''),
 (3, 20000, 'Razer egér', 'Egy különösen díszes Razer egér.', 6, ''),
-(4, 100000, 'Xbox Two', 'Egy nagyon szép konzol.', 4, '');
+(4, 100000, 'Xbox Two', 'Egy nagyon szép konzol.', 4, ''),
+(5, 3000, 'PoFone', 'Egy készülék ami felrázza a fejedet!', 30, ''),
+(6, 4000, 'Okos Zokni', 'Automatikusan beállítja a melegséget.', 30, ''),
+(9, 800, 'Chips', 'Roporgós nasi.', 50, ''),
+(10, 6999, 'Balta', 'Kiválló minőségű nemesacél eszköz.', 4, ''),
+(11, 1500, 'Zseblámpa', 'Fény a sötétben.', 80, ''),
+(12, 5350, 'Kard alakú gyertyatartó', 'Kard alakú gyertyatartó.', 15, ''),
+(13, 7999, 'Játék Mackó', 'Hatalmas puha ölelnivaló barát.', 12, ''),
+(14, 45000, 'Sarokcsiszoló', 'Remek minőségű eszköz, amivel simán lesimít bármit.', 63, ''),
+(15, 2000, 'NineTenGo játékkonzol', 'Eredeti játékkonzol több mint 10000 előretelepített játékkal. (Limitált)', 3, ''),
+(16, 1234, 'Szardínia', 'Remek reggeli rendkívül rideg reménytelen rentgetegben.', 123, ''),
+(17, 150000, 'LCD Tv', 'A legjobb a legnagyobb tv. 4k! 120Hz', 45, ''),
+(18, 4560, 'Szék Párna', 'Egy párna a székhez amit most vettél.', 17, ''),
+(19, 8650, 'Polc', 'Egy takaros polc.', 52, ''),
+(20, 9999, 'SSD 500Gb', 'Szuper gyors SSD, 500GB', 7, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tábla szerkezet ehhez a táblához `users`
 --
 
 CREATE TABLE `users` (
@@ -114,7 +128,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- A tábla adatainak kiíratása `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
@@ -131,7 +145,7 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_orders`
+-- Tábla szerkezet ehhez a táblához `user_orders`
 --
 
 CREATE TABLE `user_orders` (
@@ -145,79 +159,79 @@ CREATE TABLE `user_orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user_orders`
+-- A tábla adatainak kiíratása `user_orders`
 --
 
 INSERT INTO `user_orders` (`id`, `fk_user`, `city_name`, `postcode`, `address`, `house_door_num`, `name`) VALUES
-(1, 1, 'Mosonmagyaróvár', '9200', 'Törköly utca', '21', '5'),
+(1, 1, 'Mosonmagyaróvár', '9200', 'Törköly utca', '21', 'macika'),
 (2, 3, 'Pécs', '7600', 'Ady Endre utca', '5', '4'),
 (17, 9, 'Gyöngyös', '3200', 'HHHHH', '34', '6'),
 (18, 9, 'asdasd', '3230', 'fsdfsd', '30', '30');
 
 --
--- Indexes for dumped tables
+-- Indexek a kiírt táblákhoz
 --
 
 --
--- Indexes for table `invoices`
+-- A tábla indexei `invoices`
 --
 ALTER TABLE `invoices`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ordered_products`
+-- A tábla indexei `ordered_products`
 --
 ALTER TABLE `ordered_products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- A tábla indexei `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- A tábla indexei `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_orders`
+-- A tábla indexei `user_orders`
 --
 ALTER TABLE `user_orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- A kiírt táblák AUTO_INCREMENT értéke
 --
 
 --
--- AUTO_INCREMENT for table `invoices`
+-- AUTO_INCREMENT a táblához `invoices`
 --
 ALTER TABLE `invoices`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `ordered_products`
+-- AUTO_INCREMENT a táblához `ordered_products`
 --
 ALTER TABLE `ordered_products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT a táblához `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `user_orders`
+-- AUTO_INCREMENT a táblához `user_orders`
 --
 ALTER TABLE `user_orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
