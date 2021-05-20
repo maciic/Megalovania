@@ -51,7 +51,7 @@ public class FXMLUserOrder implements Initializable {
     @FXML private Label lb_transportPostalCode;
     @FXML private Label lb_transportAddress;
     @FXML private Label lb_transportHouseNumber;
-    int cartId=0;
+    public static int cartId=0;
 
 
     @FXML
@@ -177,8 +177,7 @@ public class FXMLUserOrder implements Initializable {
     @FXML
     private void ac_deleteItem(Parent ap_currentAP,int ID){
         ap_currentAP.setDisable(true);
-        Cart.RemoveFromCart(ID);
-        //FXMLMainApp.lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
+        FXMLMainApp.indexToDelete.add(ID);
 
 
     }
@@ -194,5 +193,10 @@ public class FXMLUserOrder implements Initializable {
             }
             ap_contentINCart.getChildren().add(createPane(i*120, Cart.cartContent.get(i).get("name"), Integer.parseInt(Cart.cartContent.get(i).get("price"))));
         }
+        int temp=0;
+        for (var elem:Cart.cartContent) {
+            temp+= Integer.parseInt(elem.get("price"));
+        }
+        lb_vegosszeg.setText(String.valueOf(temp));
     }
 }

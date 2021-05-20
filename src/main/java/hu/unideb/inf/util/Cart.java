@@ -18,9 +18,8 @@ public class Cart {
     }
 
     public static void RemoveFromCart(int index){
-        ArrayList<Integer> tmp = new ArrayList<>();
-        tmp.add(index);
-            cartContent.remove(index);
+
+        cartContent.remove(index);
 
 
     }

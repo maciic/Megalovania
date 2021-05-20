@@ -8,6 +8,7 @@ package hu.unideb.inf.view;
 
 import java.beans.EventHandler;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -52,6 +53,7 @@ public class FXMLMainApp implements Initializable {
     @FXML
     private AnchorPane prod_list;
 
+    public static ArrayList<Integer> indexToDelete = new ArrayList<>();
     @FXML
     public void ac_addToBasket(String gombId) {
         HashMap<String, String> tmp = new HashMap<>(ProductsModel.getProduct(gombId));
@@ -67,7 +69,8 @@ public class FXMLMainApp implements Initializable {
 
     @FXML
     private void ac_openBasket() {
-
+        FXMLUserOrder.cartId = 0;
+        indexToDelete.clear();
         try {
             lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLUserOrder.fxml"));
@@ -75,6 +78,9 @@ public class FXMLMainApp implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setOnCloseRequest(event -> {
+                for (int i=indexToDelete.size()-1;i>=0;i--){
+                    Cart.RemoveFromCart(i);
+                }
                 lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
                 // Save file
             });
