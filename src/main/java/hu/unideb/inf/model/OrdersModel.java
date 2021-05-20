@@ -59,7 +59,6 @@ public class OrdersModel {
     }
     public boolean placeOrder(){
         //order placement by userId
-        System.out.println(userId = Session.getUserId());
         ArrayList tmp = new ArrayList();
         ArrayList result = new ArrayList();
         String orderId = "";
@@ -82,7 +81,6 @@ public class OrdersModel {
         try {
             if( rs != null && rs.next()){
                 orderId = rs.getString("id");
-                System.out.println(orderId);
             } else {
                 return false;
             }
@@ -134,7 +132,6 @@ public class OrdersModel {
                 "INNER JOIN users ON user_orders.fk_user = users.id " +
                 "INNER JOIN products ON products.id = ordered_products.fk_product " +
                 "WHERE users.id = ?;",tmp);
-        System.out.println(rs);
         try {
             while(rs != null && rs.next()){
                 HashMap<String,String> rstmp = new HashMap<>();
