@@ -23,7 +23,7 @@ public class Session {
         userName = tmp.get(1);
     }
     public static void logout(){
-        userId = "";
-        userName = "";
+        userId = null;
+        userName = null;
     }
 }

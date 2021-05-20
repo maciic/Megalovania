@@ -31,6 +31,7 @@ public class OrdersModel {
         userId = Session.getUserId();
     }
     public static OrdersModel getInstance(){
+        userId = Session.getUserId();
         if(om == null){
             om = new OrdersModel();
         }
