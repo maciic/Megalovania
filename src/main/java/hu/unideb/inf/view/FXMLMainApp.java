@@ -76,9 +76,11 @@ public class FXMLMainApp implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setOnCloseRequest(event -> {
-                Collections.sort(indexToDelete);
-                for (int i=indexToDelete.size()-1;i>=0;i--){
-                    Cart.RemoveFromCart(indexToDelete.get(i));
+                if(FXMLMainApp.indexToDelete.size()>0){
+                    Collections.sort(FXMLMainApp.indexToDelete);
+                    for (int i = FXMLMainApp.indexToDelete.size() - 1; i >= 0; i--)
+                        Cart.RemoveFromCart(FXMLMainApp.indexToDelete.get(i));
+                    FXMLMainApp.indexToDelete.clear();
                 }
                 lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
                 // Save file

@@ -11,9 +11,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-
+import hu.unideb.inf.view.FXMLMainApp;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -59,8 +60,13 @@ public class FXMLUserOrder implements Initializable {
 
 
     @FXML
-    private void ac_goTransportTab(){
-
+    private void ac_goTransportTab() {
+        if(FXMLMainApp.indexToDelete.size()>0){
+            Collections.sort(FXMLMainApp.indexToDelete);
+            for (int i = FXMLMainApp.indexToDelete.size() - 1; i >= 0; i--)
+             Cart.RemoveFromCart(FXMLMainApp.indexToDelete.get(i));
+            FXMLMainApp.indexToDelete.clear();
+        }
         if(Cart.cartSize() != 0){
             tab_transport.setDisable(false);
             tab_transport.getTabPane().getSelectionModel().select(1);
