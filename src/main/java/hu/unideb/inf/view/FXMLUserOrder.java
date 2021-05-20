@@ -22,6 +22,8 @@ public class FXMLUserOrder implements Initializable {
     @FXML private Tab tab_transport;
     @FXML private Tab tab_orderSummary;
 
+    @FXML private Button bt_finalizeOrder;
+
     @FXML private AnchorPane ap_transport;
     @FXML private AnchorPane ap_contentINCart;
     @FXML private CheckBox cb_billAndTransportAddressEQ;
@@ -137,6 +139,7 @@ public class FXMLUserOrder implements Initializable {
 
         Cart.cartContent.clear();
         lb_yourOrderError.setText("Megrendelés véglegesítve!");
+        bt_finalizeOrder.setDisable(true);
     }
 
     @FXML
