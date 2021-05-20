@@ -17,10 +17,11 @@ public class Cart {
 
     }
 
-    public static void RemoveFromCart(HashMap<String,String> kivesz){
-        HashMap<String,String> tmp = new HashMap<>();
-        if(cartContent.contains(kivesz))
-        cartContent.remove(kivesz);
+    public static void RemoveFromCart(int index){
+        ArrayList<Integer> tmp = new ArrayList<>();
+        tmp.add(index);
+            cartContent.remove(index);
+
 
     }
      private int cartSize(ArrayList<HashMap<String,String>> cart){

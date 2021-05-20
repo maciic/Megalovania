@@ -27,6 +27,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import hu.unideb.inf.util.Cart;
 import hu.unideb.inf.model.ProductsModel;
+import hu.unideb.inf.view.FXMLUserOrder;
 
 
 public class FXMLMainApp implements Initializable {
@@ -41,7 +42,7 @@ public class FXMLMainApp implements Initializable {
     @FXML private AnchorPane prod_list;
 
     @FXML
-    private void ac_addToBasket(String gombId) {
+    public void ac_addToBasket(String gombId) {
         HashMap<String,String> tmp = new HashMap<>(ProductsModel.getProduct(gombId));
         Cart.AddToCart(tmp);
 
@@ -55,11 +56,17 @@ public class FXMLMainApp implements Initializable {
 
     @FXML
     private void ac_openBasket(){
+
         try {
+            lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLUserOrder.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
+            stage.setOnCloseRequest(event -> {
+                lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
+                // Save file
+            });
             stage.show();
         }
         catch (Exception e) {
@@ -107,6 +114,8 @@ public class FXMLMainApp implements Initializable {
     }
     @FXML
     private void orderRefresh(){
+        prod_list.getChildren().removeAll();
+        lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
         ProductsModel.OrderByName temp1;
 
         if(cb_orderByNameBox.getValue().equals("---")){
@@ -154,19 +163,15 @@ public class FXMLMainApp implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        //ChoiceBox<String> cb_orderByNameBox = new ChoiceBox<>();
         cb_orderByNameBox.getItems().add("---");
         cb_orderByNameBox.getItems().add("Növekvő");
         cb_orderByNameBox.getItems().add("Csökkenő");
         cb_orderByNameBox.setValue("Növekvő");
 
-
-        //ChoiceBox<String> cb_orderByCostBox = new ChoiceBox<>();
         cb_orderByCostBox.getItems().add("---");
         cb_orderByCostBox.getItems().add("Növekvő");
         cb_orderByCostBox.getItems().add("Csökkenő");
         cb_orderByCostBox.setValue("---");
-
 
         ProductsModel.OrderByName temp1;
 
@@ -186,18 +191,12 @@ public class FXMLMainApp implements Initializable {
         } else
             temp2 = ProductsModel.OrderByPrice.Descending;
 
-
-
-
         bt_loginName.setText("Felhasználó");
 
-        int counter = 0;
         int x = 0;
         int y = 0;
 
 
-        String name;
-        int price = 250;
         int i=0;
 
         for (var elem : ProductsModel.getProducts(temp1,temp2))
