@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import hu.unideb.inf.util.Cart;
 import hu.unideb.inf.model.ProductsModel;
@@ -115,7 +116,6 @@ public class FXMLMainApp implements Initializable {
     private void ac_search() {
         String search;
         search = txf_searchField.getText();
-        System.out.println(search);
         getSearch(search);
     }
 
@@ -149,8 +149,8 @@ public class FXMLMainApp implements Initializable {
         for (var elem : ProductsModel.getProducts(NameOrder, PriceOrder)) {
 
 
-            if (i * 50 * i > prod_list.getPrefHeight()) {
-                prod_list.setPrefHeight((i) * 50 + (i));
+            if (i * 55 * i > prod_list.getPrefHeight()) {
+                prod_list.setPrefHeight((i) * 55 + (i));
             }
 
             if (elem.get("name").toLowerCase().contains(txf_searchField.getText().toLowerCase())) {
@@ -179,8 +179,8 @@ public class FXMLMainApp implements Initializable {
         for (var elem : ProductsModel.getProducts(ProductsModel.OrderByName.None, ProductsModel.OrderByPrice.None)) {
 
 
-            if (i * 50 * i > prod_list.getPrefHeight()) {
-                prod_list.setPrefHeight((i) * 50 + (i));
+            if (i * 55 * i > prod_list.getPrefHeight()) {
+                prod_list.setPrefHeight((i) * 55 + (i));
             }
 
             if (elem.get("name").toLowerCase().contains(sub.toLowerCase())) {
@@ -238,8 +238,8 @@ public class FXMLMainApp implements Initializable {
         int i = 0;
 
         for (var elem : ProductsModel.getProducts(temp1, temp2)) {
-            if (i * 50 * i > prod_list.getPrefHeight()) {
-                prod_list.setPrefHeight((i) * 50 + (i));
+            if (i * 55 * i > prod_list.getPrefHeight()) {
+                prod_list.setPrefHeight((i) * 55 + (i));
             }
 
             if (x < 5) {
@@ -271,19 +271,24 @@ public class FXMLMainApp implements Initializable {
         bt_buyitem.setAlignment(Pos.CENTER);
         bt_buyitem.setOnAction(actionEvent -> ac_addToBasket(tovabb));
 
-        lb_name.setFont(javafx.scene.text.Font.font("System", 20));
-        lb_name.setLayoutX(55);
-        lb_name.setLayoutY(40);
+        lb_name.setMaxWidth(120);
+        lb_name.setWrapText(true);
+        lb_name.setFont(javafx.scene.text.Font.font("System", 18));
+        lb_name.setLayoutX(60);
+        lb_name.setLayoutY(30);
         lb_name.setAlignment(Pos.CENTER);
 
+
         lb_cost.setFont(Font.font("System", 20));
-        lb_cost.setLayoutX(74);
-        lb_cost.setLayoutY(80);
+        lb_cost.setLayoutX(70);
+        lb_cost.setLayoutY(100);
         lb_name.setAlignment(Pos.CENTER);
 
         ap_item.setStyle("-fx-background-color: #D37D6A; -fx-background-radius: .5em; -fx-border-radius: 3em;");
         ap_item.setPrefHeight(200);
         ap_item.setPrefWidth(200);
+        ap_item.setMaxWidth(200);
+        ap_item.setMaxHeight(200);
         ap_item.setLayoutX(xpadd + 40);
         ap_item.setLayoutY(ypadd + 20);
 
