@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.util.Cart;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -175,11 +176,11 @@ public class FXMLUserOrder implements Initializable {
         tab_transport.setDisable(true);
         tab_orderSummary.setDisable(true);
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < Cart.cartContent.size(); i++){
             if(i*120+20*i > ap_contentINCart.getPrefHeight()){
                 ap_contentINCart.setPrefHeight((i)*120+20*(i));
             }
-            ap_contentINCart.getChildren().add(createPane(i*120, "pofone", 3500));
+            ap_contentINCart.getChildren().add(createPane(i*120, Cart.cartContent.get(i).get("name"), 3500));
         }
     }
 }

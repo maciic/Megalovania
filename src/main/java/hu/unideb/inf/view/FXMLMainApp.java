@@ -26,10 +26,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import hu.unideb.inf.util.Cart;
+import hu.unideb.inf.model.ProductsModel;
+
 
 public class FXMLMainApp implements Initializable {
 
-    ObservableList<String> cb_orderByCostList = FXCollections.observableArrayList("---", "Növekvő", "Csökkenő");
 
     @FXML private Label lb_itemsInBasket;
     @FXML private ChoiceBox cb_orderByCostBox;
@@ -41,11 +42,9 @@ public class FXMLMainApp implements Initializable {
 
     @FXML
     private void ac_addToBasket(String gombId) {
-        HashMap<String,String> tmp = new HashMap<>();
-        System.out.println(gombId);
-
-
+        HashMap<String,String> tmp = new HashMap<>(ProductsModel.getProduct(gombId));
         Cart.AddToCart(tmp);
+
         if(Cart.cartContent.size()!=0)
             lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
         else
@@ -106,14 +105,89 @@ public class FXMLMainApp implements Initializable {
             System.out.println(search);
         }
     }
+    @FXML
+    private void orderRefresh(){
+        ProductsModel.OrderByName temp1;
+
+        if(cb_orderByNameBox.getValue().equals("---")){
+            temp1 = ProductsModel.OrderByName.None;
+        }else if(cb_orderByNameBox.getValue().equals("Növekvő")) {
+            temp1 = ProductsModel.OrderByName.Ascending;
+        } else
+            temp1 = ProductsModel.OrderByName.Descending;
+
+        ProductsModel.OrderByPrice temp2;
+
+        if(cb_orderByCostBox.getValue().equals("---")){
+            temp2 = ProductsModel.OrderByPrice.None;
+        }else if(cb_orderByCostBox.getValue().equals("Növekvő")) {
+            temp2 = ProductsModel.OrderByPrice.Ascending;
+        } else
+            temp2 = ProductsModel.OrderByPrice.Descending;
+
+        int x = 0;
+        int y = 0;
+        int i=0;
+
+        for (var elem : ProductsModel.getProducts(temp1,temp2))
+        {
+            if(i*50*i > prod_list.getPrefHeight())
+            {
+                prod_list.setPrefHeight((i)*50+(i));
+            }
+
+            if(x < 5)
+            {
+                prod_list.getChildren().add(createPane(x*220, y * 230,elem.get("name"),Integer.parseInt(elem.get("id")),Integer.parseInt(elem.get("price")),elem.get("id")));
+                x++;
+            }
+            else
+            {
+                y++;
+                x = 0;
+                prod_list.getChildren().add(createPane(x*220, y * 230,elem.get("name"),Integer.parseInt(elem.get("id")),Integer.parseInt(elem.get("price")),elem.get("id")));
+            }
+            i++;
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cb_orderByCostBox.setValue("---");
-        cb_orderByCostBox.setItems(cb_orderByCostList);
 
+        //ChoiceBox<String> cb_orderByNameBox = new ChoiceBox<>();
+        cb_orderByNameBox.getItems().add("---");
+        cb_orderByNameBox.getItems().add("Növekvő");
+        cb_orderByNameBox.getItems().add("Csökkenő");
         cb_orderByNameBox.setValue("Növekvő");
-        cb_orderByNameBox.setItems(cb_orderByCostList);
+
+
+        //ChoiceBox<String> cb_orderByCostBox = new ChoiceBox<>();
+        cb_orderByCostBox.getItems().add("---");
+        cb_orderByCostBox.getItems().add("Növekvő");
+        cb_orderByCostBox.getItems().add("Csökkenő");
+        cb_orderByCostBox.setValue("---");
+
+
+        ProductsModel.OrderByName temp1;
+
+        if(cb_orderByNameBox.getValue().equals("---")){
+            temp1 = ProductsModel.OrderByName.None;
+        }else if(cb_orderByNameBox.getValue().equals("Növekvő")) {
+            temp1 = ProductsModel.OrderByName.Ascending;
+        } else
+            temp1 = ProductsModel.OrderByName.Descending;
+
+        ProductsModel.OrderByPrice temp2;
+
+        if(cb_orderByCostBox.getValue().equals("---")){
+            temp2 = ProductsModel.OrderByPrice.None;
+        }else if(cb_orderByCostBox.getValue().equals("Növekvő")) {
+            temp2 = ProductsModel.OrderByPrice.Ascending;
+        } else
+            temp2 = ProductsModel.OrderByPrice.Descending;
+
+
+
 
         bt_loginName.setText("Felhasználó");
 
@@ -123,10 +197,10 @@ public class FXMLMainApp implements Initializable {
 
 
         String name;
-        int buttonID =1;
         int price = 250;
+        int i=0;
 
-        for(int i = 0; i < 40; i++)
+        for (var elem : ProductsModel.getProducts(temp1,temp2))
         {
             if(i*50*i > prod_list.getPrefHeight())
             {
@@ -135,16 +209,16 @@ public class FXMLMainApp implements Initializable {
 
             if(x < 5)
             {
-                prod_list.getChildren().add(createPane(x*220, y * 230, "pofone", 3500, price,String.valueOf(buttonID++)));
+                prod_list.getChildren().add(createPane(x*220, y * 230,elem.get("name"),Integer.parseInt(elem.get("id")),Integer.parseInt(elem.get("price")),elem.get("id")));
                 x++;
             }
             else
             {
                 y++;
                 x = 0;
-                prod_list.getChildren().add(createPane(x*220, y * 230, "pofone", 3500, price,String.valueOf(buttonID++)));
+                prod_list.getChildren().add(createPane(x*220, y * 230,elem.get("name"),Integer.parseInt(elem.get("id")),Integer.parseInt(elem.get("price")),elem.get("id")));
             }
-
+        i++;
         }
     }
 
@@ -165,12 +239,12 @@ public class FXMLMainApp implements Initializable {
         bt_buyitem.setAlignment(Pos.CENTER);
         bt_buyitem.setOnAction(actionEvent -> ac_addToBasket(tovabb));
 
-        lb_name.setFont(javafx.scene.text.Font.font ("System", 30));
+        lb_name.setFont(javafx.scene.text.Font.font ("System", 20));
         lb_name.setLayoutX(55);
         lb_name.setLayoutY(40);
         lb_name.setAlignment(Pos.CENTER);
 
-        lb_cost.setFont(Font.font ("System", 30));
+        lb_cost.setFont(Font.font ("System", 20));
         lb_cost.setLayoutX(74);
         lb_cost.setLayoutY(80);
         lb_name.setAlignment(Pos.CENTER);

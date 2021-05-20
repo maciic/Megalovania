@@ -12,7 +12,6 @@ public class Cart {
 
     public static ArrayList<HashMap<String,String>> AddToCart(HashMap<String,String> bele){
         HashMap<String,String> tmp = new HashMap<>();
-        cartContent = new ArrayList<>();
         cartContent.add(bele);
         return cartContent;
 

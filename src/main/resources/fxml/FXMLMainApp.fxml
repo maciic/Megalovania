@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLMainApp">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLMainApp">
     <children>
         <ScrollPane layoutX="400.0" prefHeight="900.0" prefWidth="1200.0">
          <content>
                 <AnchorPane fx:id="prod_list" minHeight="0.0" minWidth="0.0" prefHeight="1800.0" prefWidth="1185.0" />
          </content>
         </ScrollPane>
-        <AnchorPane prefHeight="900.0" prefWidth="400.0" style="-fx-background-color: #bab5b3;">
+        <AnchorPane layoutX="-16.0" layoutY="-21.0" prefHeight="900.0" prefWidth="400.0" style="-fx-background-color: #bab5b3;">
             <children>
                 <AnchorPane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #7d7d7d;">
                     <children>
@@ -35,7 +35,8 @@
                             </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                  </Button>
                         <TextField fx:id="txf_searchField" layoutX="27.0" layoutY="125.0" prefHeight="30.0" prefWidth="260.0">
                             <font>
                                 <Font size="14.0" />
@@ -54,7 +55,7 @@
                   </Label>
                     </children>
                 </AnchorPane>
-                <ChoiceBox fx:id="cb_orderByCostBox" layoutX="39.0" layoutY="293.0" prefHeight="25.0" prefWidth="322.0" />
+                <ChoiceBox fx:id="cb_orderByCostBox" layoutX="39.0" layoutY="293.0" onMouseClicked="#orderRefresh" onMouseExited="#orderRefresh" onMouseMoved="#orderRefresh" prefHeight="25.0" prefWidth="322.0" />
                 <Label layoutX="109.0" layoutY="794.0" text="Megalovania">
                     <font>
                         <Font name="System Bold" size="30.0" />
@@ -70,7 +71,7 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <ChoiceBox fx:id="cb_orderByNameBox" layoutX="39.0" layoutY="383.0" prefHeight="25.0" prefWidth="322.0" />
+                <ChoiceBox fx:id="cb_orderByNameBox" layoutX="39.0" layoutY="383.0" onMouseClicked="#orderRefresh" prefHeight="25.0" prefWidth="322.0" />
                 <Label layoutX="39.0" layoutY="263.0" text="Ár">
                     <font>
                         <Font size="20.0" />
