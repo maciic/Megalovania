@@ -10,6 +10,7 @@ import java.beans.EventHandler;
 import java.net.URL;
 import java.util.*;
 
+import hu.unideb.inf.util.Session;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -74,20 +75,26 @@ public class FXMLMainApp implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLUserOrder.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(new Scene(root1));
             stage.setOnCloseRequest(event -> {
-                if(FXMLMainApp.indexToDelete.size()>0){
-                    Collections.sort(FXMLMainApp.indexToDelete);
-                    for (int i = FXMLMainApp.indexToDelete.size() - 1; i >= 0; i--)
-                        Cart.RemoveFromCart(FXMLMainApp.indexToDelete.get(i));
-                    FXMLMainApp.indexToDelete.clear();
-                }
+                deleteItemsFromCart();
                 lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
-                // Save file
             });
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void deleteItemsFromCart(){
+        Collections.sort(indexToDelete);
+        for (int i=indexToDelete.size()-1;i>=0;i--){
+            try{
+                Cart.RemoveFromCart(indexToDelete.get(i));
+            }catch (Exception e){
+                break;
+            }
         }
     }
 
@@ -99,8 +106,10 @@ public class FXMLMainApp implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLUserLogin.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(new Scene(root1));
             stage.show();
+            Session.logout();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,6 +121,7 @@ public class FXMLMainApp implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLlistUserOrders.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(new Scene(root1));
             stage.show();
         } catch (Exception e) {
@@ -236,7 +246,7 @@ public class FXMLMainApp implements Initializable {
 
         bt_sort.setOnAction(actionEvent -> getChoice(cb_orderByNameBox, cb_orderByCostBox));
 
-        bt_loginName.setText("Felhasználó");
+        bt_loginName.setText("Megrendelések");
 
         int x = 0;
         int y = 0;

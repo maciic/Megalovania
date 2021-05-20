@@ -11,10 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import hu.unideb.inf.view.FXMLMainApp;
+
 
 import java.net.URL;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -22,6 +21,8 @@ public class FXMLUserOrder implements Initializable {
 
     @FXML private Tab tab_transport;
     @FXML private Tab tab_orderSummary;
+
+    @FXML private Button bt_finalizeOrder;
 
     @FXML private AnchorPane ap_transport;
     @FXML private AnchorPane ap_contentINCart;
@@ -60,19 +61,16 @@ public class FXMLUserOrder implements Initializable {
 
 
     @FXML
-    private void ac_goTransportTab() {
-        if(FXMLMainApp.indexToDelete.size()>0){
-            Collections.sort(FXMLMainApp.indexToDelete);
-            for (int i = FXMLMainApp.indexToDelete.size() - 1; i >= 0; i--)
-             Cart.RemoveFromCart(FXMLMainApp.indexToDelete.get(i));
-            FXMLMainApp.indexToDelete.clear();
-        }
+    private void ac_goTransportTab(){
+
+        FXMLMainApp.deleteItemsFromCart();
         if(Cart.cartSize() != 0){
             tab_transport.setDisable(false);
             tab_transport.getTabPane().getSelectionModel().select(1);
         }else{
             lb_contentInCartErrorBar.setText("A kosár üres!");
         }
+        totalCostCount();
 
     }
 
@@ -141,6 +139,7 @@ public class FXMLUserOrder implements Initializable {
 
         Cart.cartContent.clear();
         lb_yourOrderError.setText("Megrendelés véglegesítve!");
+        bt_finalizeOrder.setDisable(true);
     }
 
     @FXML
@@ -201,8 +200,15 @@ public class FXMLUserOrder implements Initializable {
     private void ac_deleteItem(Parent ap_currentAP,int ID){
         ap_currentAP.setDisable(true);
         FXMLMainApp.indexToDelete.add(ID);
+    }
 
-
+    private void totalCostCount(){
+        int temp=0;
+        for (var elem:Cart.cartContent) {
+            temp+= Integer.parseInt(elem.get("price"));
+        }
+        lb_vegosszeg.setText(temp + " Ft-");
+        lb_finalizeOrderTotalCost.setText(lb_vegosszeg.getText());
     }
 
     @Override
@@ -216,11 +222,6 @@ public class FXMLUserOrder implements Initializable {
             }
             ap_contentINCart.getChildren().add(createPane(i*120, Cart.cartContent.get(i).get("name"), Integer.parseInt(Cart.cartContent.get(i).get("price"))));
         }
-        int temp=0;
-        for (var elem:Cart.cartContent) {
-            temp+= Integer.parseInt(elem.get("price"));
-        }
-        lb_vegosszeg.setText(temp + " Ft-");
-        lb_finalizeOrderTotalCost.setText(lb_vegosszeg.getText());
+        totalCostCount();
     }
 }

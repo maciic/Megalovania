@@ -199,7 +199,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button layoutX="472.0" layoutY="571.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#ac_finalizeOrder" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Rendelés Leadása" textFill="WHITE">
+                  <Button fx:id="bt_finalizeOrder" layoutX="472.0" layoutY="571.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#ac_finalizeOrder" prefHeight="46.0" prefWidth="257.0" style="-fx-background-color: #f17000; -fx-background-radius: 5em; -fx-border-radius: 5em;" text="Rendelés Leadása" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

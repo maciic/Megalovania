@@ -44,6 +44,7 @@ public class FXMLUserLogin implements Initializable {
                     catch (Exception e) {
                         e.printStackTrace();
                     }
+
                     Session.login(txf_userName.getText());
             }else
                 label_WrongPassword.setText("Helytelen jelszó!");
@@ -71,6 +72,7 @@ public class FXMLUserLogin implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLUserRegistration.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(new Scene(root1));
             stage.show();
         }

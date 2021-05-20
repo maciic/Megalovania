@@ -20,7 +20,7 @@ public class FXMLlistUserOrders implements Initializable {
 
     @FXML private AnchorPane ap_listOfOrders;
     ArrayList<HashMap<String,String>> data = OrdersModel.getInstance().getOrderList();
-    double latestHeight = 0;
+    double latestHeight = 20;
     int n = 0;
 
     private AnchorPane addItem(int count, HashMap<String,String> map){
@@ -40,23 +40,23 @@ public class FXMLlistUserOrders implements Initializable {
         ap_item.setStyle("-fx-background-color: #none; -fx-border-color: #000; -fx-background-radius: 2em; -fx-border-radius: 2em;");
         ap_item.setPrefHeight(50);
         ap_item.setPrefWidth(500);
-        ap_item.setLayoutX(600);
+        ap_item.setLayoutX(500);
         ap_item.setLayoutY(count + 10);
 
         ap_item.getChildren().add(lb_itemName);
         ap_item.getChildren().add(lb_itemPrice);
 
-        latestHeight += ap_item.getPrefHeight() + 10;
+        latestHeight += ap_item.getPrefHeight();
 
         return ap_item;
     }
 
-    private AnchorPane createPane(HashMap<String,String> map, int orderID){
+    private AnchorPane createPane(HashMap<String,String> map, int orderID, int sorszam){
 
         int totalCost = 0;
         AnchorPane ap_order = new AnchorPane();
-        Label lb_orderID = new Label(map.get("order_id"));
 
+        Label lb_orderID = new Label();
         Label lb_bill = new Label("Számlázás: " + map.get("order_name") + ", " + map.get("order_city_name") + ", " + map.get("order_postcode") + ", " + map.get("order_address") + ", " + map.get("order_house_door_num"));
         Label lb_transport = new Label("Szállítás: " + map.get("invoices_name") + ", " + map.get("invoices_city_name") + ", " + map.get("invoices_postcode") + ", " + map.get("invoices_address") + ", " + map.get("invoices_house_door_num"));
         Label lb_totalCost = new Label();
@@ -64,7 +64,7 @@ public class FXMLlistUserOrders implements Initializable {
         lb_orderID.setFont(Font.font(20));
         lb_orderID.setLayoutX(10);
         lb_orderID.setLayoutY(10);
-        lb_orderID.setText(map.get("order_id") + " rendelés");
+        lb_orderID.setText((sorszam+1) + " rendelés");
         lb_orderID.setUnderline(true);
 
         lb_bill.setFont(Font.font(16));
@@ -83,7 +83,7 @@ public class FXMLlistUserOrders implements Initializable {
         ap_order.setPrefHeight(70);
         ap_order.setPrefWidth(1100);
         ap_order.setLayoutX(45);
-        ap_order.setLayoutY(20+latestHeight);
+        ap_order.setLayoutY(latestHeight);
 
         for(int j = 0; j < data.size(); j++){
             if(Integer.parseInt(data.get(j).get("order_id")) == orderID){
@@ -100,7 +100,7 @@ public class FXMLlistUserOrders implements Initializable {
         ap_order.getChildren().add(lb_transport);
         ap_order.getChildren().add(lb_totalCost);
 
-        latestHeight += ap_order.getHeight() + 20;
+        latestHeight += ap_order.getPrefHeight();
 
         return ap_order;
     }
@@ -121,7 +121,7 @@ public class FXMLlistUserOrders implements Initializable {
                 try {
                     if(Integer.parseInt(data.get(j).get("order_id")) == ordersInMap.get(i)){
                         n = 0;
-                        ap_listOfOrders.getChildren().add(createPane(data.get(j), ordersInMap.get(i)));
+                        ap_listOfOrders.getChildren().add(createPane(data.get(j), ordersInMap.get(i), i));
                         ap_listOfOrders.setPrefHeight(latestHeight);
                         i++;
                     }
@@ -131,6 +131,6 @@ public class FXMLlistUserOrders implements Initializable {
 
             }
         }
-        ap_listOfOrders.setPrefHeight(ap_listOfOrders.getPrefHeight() + 50);
+        ap_listOfOrders.setPrefHeight(ap_listOfOrders.getPrefHeight());
     }
 }
