@@ -69,7 +69,7 @@ public class OrdersModel {
         tmp.add(order_address);
         tmp.add(order_house_door_num);
         tmp.add(order_name);
-        if (db.update("INSERT INTO user_orders (fk_user, city_name, postcode, address, house_num, door_num) VALUES (?,?,?,?,?,?);", tmp) != 1) {
+        if (db.update("INSERT INTO user_orders (fk_user, city_name, postcode, address, house_door_num, name) VALUES (?,?,?,?,?,?);", tmp) != 1) {
             //belső sql hiba
             return false;
         }
@@ -110,7 +110,7 @@ public class OrdersModel {
         tmp4.add(invoice_house_door_num);
         tmp4.add(invoice_name);
         tmp4.add(Integer.toString(total_price));
-        if (db.update("INSERT INTO invoices (fk_order, city_name, postcode, address, house_num, door_num, total) VALUES (?,?,?,?,?,?,?);", tmp4) != 1) {
+        if (db.update("INSERT INTO invoices (fk_order, city_name, postcode, address, house_door_num, name, total) VALUES (?,?,?,?,?,?,?);", tmp4) != 1) {
             //belső sql hiba
             return false;
         }
