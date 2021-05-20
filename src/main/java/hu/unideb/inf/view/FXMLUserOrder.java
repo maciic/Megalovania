@@ -61,12 +61,14 @@ public class FXMLUserOrder implements Initializable {
     @FXML
     private void ac_goTransportTab(){
 
+        FXMLMainApp.deleteItemsFromCart();
         if(Cart.cartSize() != 0){
             tab_transport.setDisable(false);
             tab_transport.getTabPane().getSelectionModel().select(1);
         }else{
             lb_contentInCartErrorBar.setText("A kosár üres!");
         }
+        totalCostCount();
 
     }
 
@@ -195,8 +197,15 @@ public class FXMLUserOrder implements Initializable {
     private void ac_deleteItem(Parent ap_currentAP,int ID){
         ap_currentAP.setDisable(true);
         FXMLMainApp.indexToDelete.add(ID);
+    }
 
-
+    private void totalCostCount(){
+        int temp=0;
+        for (var elem:Cart.cartContent) {
+            temp+= Integer.parseInt(elem.get("price"));
+        }
+        lb_vegosszeg.setText(temp + " Ft-");
+        lb_finalizeOrderTotalCost.setText(lb_vegosszeg.getText());
     }
 
     @Override
@@ -210,11 +219,6 @@ public class FXMLUserOrder implements Initializable {
             }
             ap_contentINCart.getChildren().add(createPane(i*120, Cart.cartContent.get(i).get("name"), Integer.parseInt(Cart.cartContent.get(i).get("price"))));
         }
-        int temp=0;
-        for (var elem:Cart.cartContent) {
-            temp+= Integer.parseInt(elem.get("price"));
-        }
-        lb_vegosszeg.setText(temp + " Ft-");
-        lb_finalizeOrderTotalCost.setText(lb_vegosszeg.getText());
+        totalCostCount();
     }
 }

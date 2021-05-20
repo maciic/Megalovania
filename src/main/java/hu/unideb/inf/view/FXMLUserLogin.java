@@ -44,6 +44,7 @@ public class FXMLUserLogin implements Initializable {
                     catch (Exception e) {
                         e.printStackTrace();
                     }
+
                     Session.login(txf_userName.getText());
             }else
                 label_WrongPassword.setText("Helytelen jelszó!");
