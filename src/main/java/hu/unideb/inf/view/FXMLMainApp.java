@@ -8,10 +8,7 @@ package hu.unideb.inf.view;
 
 import java.beans.EventHandler;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,6 +58,7 @@ public class FXMLMainApp implements Initializable {
 
         if (Cart.cartContent.size() != 0)
             lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
+
         else
             lb_itemsInBasket.setText("0");
 
@@ -78,8 +76,9 @@ public class FXMLMainApp implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setOnCloseRequest(event -> {
+                Collections.sort(indexToDelete);
                 for (int i=indexToDelete.size()-1;i>=0;i--){
-                    Cart.RemoveFromCart(i);
+                    Cart.RemoveFromCart(indexToDelete.get(i));
                 }
                 lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
                 // Save file

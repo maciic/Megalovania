@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.model.OrdersModel;
 import hu.unideb.inf.model.ProductsModel;
 import hu.unideb.inf.util.Cart;
 import javafx.fxml.FXML;
@@ -24,7 +25,6 @@ public class FXMLUserOrder implements Initializable {
     @FXML private AnchorPane ap_transport;
     @FXML private AnchorPane ap_contentINCart;
     @FXML private CheckBox cb_billAndTransportAddressEQ;
-    @FXML public Label lb_vegosszeg;
 
     @FXML private TextField txf_billName;
     @FXML private TextField txf_billCity;
@@ -39,6 +39,10 @@ public class FXMLUserOrder implements Initializable {
     @FXML private TextField txf_transportHouseNumber;
 
     @FXML private Label lb_titleError;
+    @FXML private Label lb_finalizeOrderTotalCost;
+    @FXML public Label lb_vegosszeg;
+    @FXML private Label lb_contentInCartErrorBar;
+    @FXML private Label lb_yourOrderError;
 
     @FXML private Label lb_billName;
     @FXML private Label lb_billCity;
@@ -56,8 +60,14 @@ public class FXMLUserOrder implements Initializable {
 
     @FXML
     private void ac_goTransportTab(){
-        tab_transport.setDisable(false);
-        tab_transport.getTabPane().getSelectionModel().select(1);
+
+        if(Cart.cartSize() != 0){
+            tab_transport.setDisable(false);
+            tab_transport.getTabPane().getSelectionModel().select(1);
+        }else{
+            lb_contentInCartErrorBar.setText("A kosár üres!");
+        }
+
     }
 
     @FXML
@@ -117,7 +127,14 @@ public class FXMLUserOrder implements Initializable {
 
     @FXML
     private void ac_finalizeOrder(){
-        System.out.println("Megrendelés véglegesítve");
+        OrdersModel om = OrdersModel.getInstance();
+        om.orderAddress(txf_billCity.getText(),txf_billPostalCode.getText(),txf_billAddress.getText(),txf_billHouseNumber.getText(),txf_billName.getText())
+                .invoiceAddress(txf_billCity.getText(),txf_billPostalCode.getText(),txf_billAddress.getText(),txf_billHouseNumber.getText(),txf_billName.getText())
+                .productList(Cart.cartContent)
+                .placeOrder();
+
+        Cart.cartContent.clear();
+        lb_yourOrderError.setText("Megrendelés véglegesítve!");
     }
 
     @FXML
@@ -197,6 +214,7 @@ public class FXMLUserOrder implements Initializable {
         for (var elem:Cart.cartContent) {
             temp+= Integer.parseInt(elem.get("price"));
         }
-        lb_vegosszeg.setText(String.valueOf(temp));
+        lb_vegosszeg.setText(temp + " Ft-");
+        lb_finalizeOrderTotalCost.setText(lb_vegosszeg.getText());
     }
 }
