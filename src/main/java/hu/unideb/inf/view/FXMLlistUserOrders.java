@@ -118,12 +118,17 @@ public class FXMLlistUserOrders implements Initializable {
 
         for(int i = 0; i < ordersInMap.size(); i++){
             for(int j = 0; j < data.size(); j++){
-                if(Integer.parseInt(data.get(j).get("order_id")) == ordersInMap.get(i)){
-                    n = 0;
-                    ap_listOfOrders.getChildren().add(createPane(data.get(j), ordersInMap.get(i)));
-                    ap_listOfOrders.setPrefHeight(latestHeight);
-                    i++;
+                try {
+                    if(Integer.parseInt(data.get(j).get("order_id")) == ordersInMap.get(i)){
+                        n = 0;
+                        ap_listOfOrders.getChildren().add(createPane(data.get(j), ordersInMap.get(i)));
+                        ap_listOfOrders.setPrefHeight(latestHeight);
+                        i++;
+                    }
+                } catch (Exception e){
+                    break;
                 }
+
             }
         }
         ap_listOfOrders.setPrefHeight(ap_listOfOrders.getPrefHeight() + 50);
