@@ -23,7 +23,7 @@ public class Cart {
 
 
     }
-     private int cartSize(ArrayList<HashMap<String,String>> cart){
-        return cart.size();
+     public static int cartSize(){
+        return cartContent.size();
      }
 }
