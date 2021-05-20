@@ -17,14 +17,14 @@ public class OrdersModel {
     private static String order_city_name;
     private static String order_postcode;
     private static String order_address;
-    private static String order_house_num;
-    private static String order_door_num;
+    private static String order_house_door_num;
+    private static String order_name;
 
     private static String invoice_city_name;
     private static String invoice_postcode;
     private static String invoice_address;
-    private static String invoice_house_num;
-    private static String invoice_door_num;
+    private static String invoice_house_door_num;
+    private static String invoice_name;
 
     private static ArrayList<HashMap<String,String>> product_list;
     private OrdersModel() {
@@ -36,20 +36,20 @@ public class OrdersModel {
         }
         return om;
     }
-    public OrdersModel orderAddress(String city_name, String postcode, String address, String house_num, String door_num){
+    public OrdersModel orderAddress(String city_name, String postcode, String address, String house_door_num, String name){
         order_city_name = city_name;
         order_postcode = postcode;
         order_address = address;
-        order_house_num = house_num;
-        order_door_num = door_num;
+        order_house_door_num = house_door_num;
+        order_name = name;
         return this;
     }
-    public OrdersModel invoiceAddress(String city_name, String postcode, String address, String house_num, String door_num){
+    public OrdersModel invoiceAddress(String city_name, String postcode, String address, String house_door_num, String name){
         invoice_city_name = city_name;
         invoice_postcode = postcode;
         invoice_address = address;
-        invoice_house_num = house_num;
-        invoice_door_num = door_num;
+        invoice_house_door_num = house_door_num;
+        invoice_name = name;
         return this;
     }
     public OrdersModel productList(ArrayList<HashMap<String,String>> productList){
@@ -67,8 +67,8 @@ public class OrdersModel {
         tmp.add(order_city_name);
         tmp.add(order_postcode);
         tmp.add(order_address);
-        tmp.add(order_house_num);
-        tmp.add(order_door_num);
+        tmp.add(order_house_door_num);
+        tmp.add(order_name);
         if (db.update("INSERT INTO user_orders (fk_user, city_name, postcode, address, house_num, door_num) VALUES (?,?,?,?,?,?);", tmp) != 1) {
             //belső sql hiba
             return false;
@@ -107,8 +107,8 @@ public class OrdersModel {
         tmp4.add(invoice_city_name);
         tmp4.add(invoice_postcode);
         tmp4.add(invoice_address);
-        tmp4.add(invoice_house_num);
-        tmp4.add(invoice_door_num);
+        tmp4.add(invoice_house_door_num);
+        tmp4.add(invoice_name);
         tmp4.add(Integer.toString(total_price));
         if (db.update("INSERT INTO invoices (fk_order, city_name, postcode, address, house_num, door_num, total) VALUES (?,?,?,?,?,?,?);", tmp4) != 1) {
             //belső sql hiba
