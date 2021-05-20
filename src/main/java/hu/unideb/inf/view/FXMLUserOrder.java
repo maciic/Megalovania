@@ -1,5 +1,6 @@
 package hu.unideb.inf.view;
 
+import hu.unideb.inf.model.ProductsModel;
 import hu.unideb.inf.util.Cart;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,7 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
+
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class FXMLUserOrder implements Initializable {
@@ -21,6 +24,7 @@ public class FXMLUserOrder implements Initializable {
     @FXML private AnchorPane ap_transport;
     @FXML private AnchorPane ap_contentINCart;
     @FXML private CheckBox cb_billAndTransportAddressEQ;
+    @FXML public Label lb_vegosszeg;
 
     @FXML private TextField txf_billName;
     @FXML private TextField txf_billCity;
@@ -47,6 +51,7 @@ public class FXMLUserOrder implements Initializable {
     @FXML private Label lb_transportPostalCode;
     @FXML private Label lb_transportAddress;
     @FXML private Label lb_transportHouseNumber;
+    int cartId=0;
 
 
     @FXML
@@ -130,18 +135,21 @@ public class FXMLUserOrder implements Initializable {
     }
 
     private AnchorPane createPane(int count, String name, int cost){
-
         AnchorPane ap_item = new AnchorPane();
         Label lb_name = new Label(name);
         Label lb_cost = new Label(String.valueOf(cost));
         Button bt_deleteItem = new Button("X");
 
+        bt_deleteItem.setId(String.valueOf(cartId));
+        int tovabb = Integer.parseInt(bt_deleteItem.getId());
         bt_deleteItem.setLayoutX(750);
         bt_deleteItem.setLayoutY(35);
         bt_deleteItem.setStyle("-fx-background-color: none; -fx-border-color: #000; -fx-background-radius: 5em; -fx-border-radius: 5em;");
         bt_deleteItem.setCursor(Cursor.HAND);
         bt_deleteItem.setAlignment(Pos.CENTER);
-        bt_deleteItem.setOnAction(actionEvent -> ac_deleteItem(bt_deleteItem.getParent()));
+        bt_deleteItem.setOnAction(actionEvent -> ac_deleteItem(bt_deleteItem.getParent(),tovabb));
+        //bt_deleteItem.setOnAction(actionEvent ->ac_deleteItem(cartId));
+        cartId++;
 
         lb_name.setFont(Font.font ("System", 30));
         lb_name.setLayoutX(160);
@@ -167,8 +175,12 @@ public class FXMLUserOrder implements Initializable {
     }
 
     @FXML
-    private void ac_deleteItem(Parent ap_currentAP){
+    private void ac_deleteItem(Parent ap_currentAP,int ID){
         ap_currentAP.setDisable(true);
+        Cart.RemoveFromCart(ID);
+        //FXMLMainApp.lb_itemsInBasket.setText(String.valueOf(Cart.cartContent.size()));
+
+
     }
 
     @Override
@@ -180,7 +192,7 @@ public class FXMLUserOrder implements Initializable {
             if(i*120+20*i > ap_contentINCart.getPrefHeight()){
                 ap_contentINCart.setPrefHeight((i)*120+20*(i));
             }
-            ap_contentINCart.getChildren().add(createPane(i*120, Cart.cartContent.get(i).get("name"), 3500));
+            ap_contentINCart.getChildren().add(createPane(i*120, Cart.cartContent.get(i).get("name"), Integer.parseInt(Cart.cartContent.get(i).get("price"))));
         }
     }
 }

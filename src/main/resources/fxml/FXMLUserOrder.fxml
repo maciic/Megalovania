@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLUserOrder">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.view.FXMLUserOrder">
   <tabs>
     <Tab fx:id="tab_basket" closable="false" text="Kosár tartalma">
       <content>
@@ -56,7 +56,7 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="1049.0" layoutY="82.0" text="43.998 Ft-" underline="true">
+                        <Label fx:id="lb_vegosszeg" layoutX="1049.0" layoutY="82.0" text="43.998 Ft-" underline="true">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
