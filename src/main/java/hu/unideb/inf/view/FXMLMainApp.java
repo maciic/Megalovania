@@ -103,6 +103,9 @@ public class FXMLMainApp implements Initializable {
         try {
             Stage currentStage = (Stage) lb_itemsInBasket.getScene().getWindow();
             currentStage.close();
+
+            Cart.cartContent.clear();
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/FXMLUserLogin.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -110,6 +113,7 @@ public class FXMLMainApp implements Initializable {
             stage.setScene(new Scene(root1));
             stage.show();
             Session.logout();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
