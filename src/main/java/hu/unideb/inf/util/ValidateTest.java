@@ -18,9 +18,9 @@ class ValidateTest {
     @DisplayName("Email validation")
     public void testEmailValidation() {
         assertEquals(false,validate.validate(""),"Empty email address.");
-        assertEquals(false,validate.validate("as"),"Not a valid email address.");
-        assertEquals(false,validate.validate("as@."),"Not a valid email address.");
-        assertEquals(false,validate.validate("asd@asd.a"),"Not a valid email address");
-        assertEquals(true,validate.validate("asd@asd.asd"),"Valid email address.");
+        assertEquals(false,validate.validate("test"),"Not a valid email address.");
+        assertEquals(false,validate.validate("test@."),"Not a valid email address.");
+        assertEquals(false,validate.validate("test@gmail.c"),"Not a valid email address");
+        assertEquals(true,validate.validate("test@gmail.com"),"Valid email address.");
     }
 }
