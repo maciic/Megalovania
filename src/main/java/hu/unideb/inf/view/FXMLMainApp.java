@@ -291,7 +291,17 @@ public class FXMLMainApp implements Initializable {
         lb_name.setMaxWidth(120);
         lb_name.setWrapText(true);
         lb_name.setFont(javafx.scene.text.Font.font("System", 18));
-        lb_name.setLayoutX(60);
+
+        if(name.length() < 7)
+        {
+            lb_name.setLayoutX(77);
+        }
+        else
+        {
+            lb_name.setLayoutX(56);
+        }
+
+        //lb_name.setLayoutX(60);
         lb_name.setLayoutY(30);
         lb_name.setAlignment(Pos.CENTER);
 
