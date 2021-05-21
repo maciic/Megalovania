@@ -1,6 +1,7 @@
 package hu.unideb.inf.view;
 
 import hu.unideb.inf.util.Session;
+import hu.unideb.inf.util.Validate;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FXMLUserLogin implements Initializable {
-
+    Validate validate = new Validate();
     @FXML private TextField txf_userName;
     @FXML private TextField txf_userPassword;
     @FXML private Label label_WrongPassword;
@@ -26,7 +27,7 @@ public class FXMLUserLogin implements Initializable {
     private void ac_login(){
         if((!txf_userName.getText().isEmpty()) && (!txf_userPassword.getText().isEmpty())){
             if(UsersModel.getUser(txf_userName.getText())!=null)
-                if(UsersModel.getUser(txf_userName.getText()).get(2).equals(txf_userPassword.getText())){
+                if(validate.validate(txf_userName.getText()) && UsersModel.getUser(txf_userName.getText()).get(2).equals(txf_userPassword.getText())){
                     label_WrongPassword.setText("");
                     String username = txf_userName.getText();
                     String password = txf_userPassword.getText();
